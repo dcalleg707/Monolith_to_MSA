@@ -1,3 +1,7 @@
+FROM node:12
+
+# Create app directory
+
 RUN mkdir /app
 
 WORKDIR /app
