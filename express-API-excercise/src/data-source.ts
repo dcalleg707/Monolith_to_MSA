@@ -16,7 +16,7 @@ export const AppDataSource: DataSource = new DataSource({
 */
 const myDataSource = new DataSource({
     type: "mongodb",
-    host: "mongodb+srv://root:root123@clustershoppyfast.cavepww.mongodb.net/test",
+    host: process.env.PG_DATABASE,
     port: 27017,
     database: "test",
 })
