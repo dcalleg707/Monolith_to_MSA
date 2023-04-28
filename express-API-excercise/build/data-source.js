@@ -1,5 +1,6 @@
-import { DataSource } from 'typeorm';
-import mongodb from "mongodb";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const typeorm_1 = require("typeorm");
 require("dotenv").config();
 /*
 export const AppDataSource: DataSource = new DataSource({
@@ -14,12 +15,10 @@ export const AppDataSource: DataSource = new DataSource({
     entities: [process.env.PG_ENTITIES || ""],
 });
 */
-const myDataSource = new DataSource({
+const myDataSource = new typeorm_1.DataSource({
     type: "mongodb",
     host: "mongodb+srv://root:root123@clustershoppyfast.cavepww.mongodb.net/test",
     port: 27017,
     database: "test",
-})
- 
-
-export default myDataSource;
+});
+exports.default = myDataSource;

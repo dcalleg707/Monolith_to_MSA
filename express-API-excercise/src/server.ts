@@ -1,18 +1,18 @@
 import "reflect-metadata";
 import express from 'express';
-import { PostController } from './controllers/post.controller';
+import { BicycleController } from './controllers/bicycle.controller';
 import bodyParser from "body-parser";
 import AppDataSource from './data-source';
 require("dotenv").config();
 
 class Server {
-    private postController: PostController;
+    private bicycleController: BicycleController;
     public app: express.Application;
 
     constructor() {
         this.app = express();
         this.configuration();
-        this.postController = new PostController();
+        this.bicycleController = new BicycleController();
         this.routes();
         AppDataSource.initialize().then(() => {
             console.log("Connected to database");
@@ -27,7 +27,7 @@ class Server {
     }
 
     public async routes() {
-        this.app.use('/api/posts', this.postController.router);
+        this.app.use('/api/bicycles', this.bicycleController.router);
     }
 
     public start() {
