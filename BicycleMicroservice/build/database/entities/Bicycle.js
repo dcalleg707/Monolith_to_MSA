@@ -14,12 +14,12 @@ const typeorm_1 = require("typeorm");
 let Bicycle = class Bicycle {
 };
 __decorate([
-    (0, typeorm_1.ObjectIdColumn)({ select: false }),
+    (0, typeorm_1.ObjectIdColumn)(),
     __metadata("design:type", String)
 ], Bicycle.prototype, "_id", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
+    __metadata("design:type", Number)
 ], Bicycle.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("varchar"),

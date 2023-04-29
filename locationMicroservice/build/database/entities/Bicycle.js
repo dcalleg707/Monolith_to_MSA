@@ -18,8 +18,8 @@ __decorate([
     __metadata("design:type", String)
 ], Bicycle.prototype, "_id", void 0);
 __decorate([
-    (0, typeorm_1.PrimaryColumn)(),
-    __metadata("design:type", String)
+    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
+    __metadata("design:type", Number)
 ], Bicycle.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("varchar"),
