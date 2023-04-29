@@ -22,7 +22,7 @@ class BicycleController {
             });
         });
         this.getBicycleById = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            BicycleRepository_1.BicycleRepository.findOneBy({ id: Number(req.params.id) }).then(bicycle => {
+            BicycleRepository_1.BicycleRepository.findOneBy({ id: req.params.id }).then(bicycle => {
                 if (!bicycle)
                     throw new Error("Bicycle not found");
                 res.send(bicycle);
@@ -39,7 +39,7 @@ class BicycleController {
             });
         });
         this.updateBicycle = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            BicycleRepository_1.BicycleRepository.findOneBy({ id: Number(req.params.id) }).then(bicycle => {
+            BicycleRepository_1.BicycleRepository.findOneBy({ id: req.params.id }).then(bicycle => {
                 if (!bicycle)
                     throw new Error("Bicycle not found");
                 BicycleRepository_1.BicycleRepository.merge(bicycle, req.body);

@@ -17,7 +17,7 @@ export class BicycleController {
     }
 
     public getBicycleById = async (req: Request, res: Response, next: Function) => {
-        BicycleRepository.findOneBy({ id: Number(req.params.id) }).then(bicycle => {
+        BicycleRepository.findOneBy({ id: req.params.id }).then(bicycle => {
             if (!bicycle) throw new Error("Bicycle not found");
             res.send(bicycle);
         }).catch(error => {
@@ -35,7 +35,7 @@ export class BicycleController {
     }
 
     public updateBicycle = async (req: Request, res: Response, next: Function) => {
-        BicycleRepository.findOneBy({ id: Number(req.params.id) }).then(bicycle => {
+        BicycleRepository.findOneBy({ id: req.params.id }).then(bicycle => {
             if (!bicycle) throw new Error("Bicycle not found");
             BicycleRepository.merge(bicycle, req.body);
             return BicycleRepository.save(bicycle)

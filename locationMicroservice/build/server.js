@@ -36,7 +36,7 @@ class Server {
     }
     routes() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.app.use('/api/bicycles', this.bicycleController.router);
+            this.app.use('/api/locations', this.bicycleController.router);
         });
     }
     start() {

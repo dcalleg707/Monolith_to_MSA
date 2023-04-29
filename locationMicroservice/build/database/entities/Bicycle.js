@@ -15,7 +15,11 @@ let Bicycle = class Bicycle {
 };
 __decorate([
     (0, typeorm_1.ObjectIdColumn)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
+], Bicycle.prototype, "_id", void 0);
+__decorate([
+    (0, typeorm_1.PrimaryColumn)(),
+    __metadata("design:type", String)
 ], Bicycle.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)("varchar"),
