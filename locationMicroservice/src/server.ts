@@ -27,7 +27,7 @@ class Server {
     }
 
     public async routes() {
-        this.app.use('/api/bicycles', this.bicycleController.router);
+        this.app.use('/api/locations', this.bicycleController.router);
     }
 
     public start() {
