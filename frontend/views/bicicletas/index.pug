@@ -1,63 +1,28 @@
-extend ../layout
+extends ../layout
 
 block content
 
-    a(href='http://localhost:3000') Home
-
-    br
-
-    br
-
-    a(href='/bicicletas/create') Nueva Bicicleta
-
-    table.table
-
-    thead
-
-        tr
-
-            th(scope='col') #
-
-            th(scope='col') Color
-
-            th(scope='col') Modelo
-
-            th(scope='col') Ubicacion
-
-            th(scope='col')
-
-            th(scope='col')
-
-    tbody
-
+  section.py-5
+    .container.px-4.px-lg-5.mt-5
+      .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center
         each bici in bicis
+          .col.mb-5
+            .card.h-100
+              // Product image
+              img.card-img-top(src='https://dummyimage.com/450x300/dee2e6/6c757d.jpg' alt='...')
+              // Product details
+              .card-body.p-4
+                .text-center
+                  // Product name
+                  h5.fw-bolder=bici.model 
+                    span=bici.color
+              // Product actions
+              .card-footer.p-4.pt-0.border-top-0.bg-transparent
+                .text-center
+                  a.btn.btn-outline-dark.mt-auto(href='bicicletas/'+bici.id+'/show') mostrar
+                  a.btn.btn-outline-dark.mt-auto(href='bicicletas/'+bici.id+'/update') editar
+                  form.inline(method='post' action='/bicicletas/'+bici.id+'/delete')
 
-            tr
+                      input(type='hidden' name='id' value=bici.id)
 
-                td(scope='row')
-
-                =bici.id
-
-                td=bici.color
-
-                td=bici.modelo
-
-                td=bici.ubicacion
-
-                td
-
-                    a(href='bicicletas/'+bici.id+'/show') mostrar
-
-                td
-
-                    a(href='bicicletas/'+bici.id+'/update') editar
-
-                td
-
-                    form.inline(method='post' action='/bicicletas/'+bici.id+'/delete')
-
-                        input(type='hidden' name='id' value=bici.id)
-
-                        button.link-button(type='submit' name='submit_param' value='submit_value' class='.btn')
-
-                        ='Eliminar'
+                      button.btn.btn-outline-dark.mt-auto(type='submit' name='submit_param' value='submit_value' class='.btn')='Eliminar'

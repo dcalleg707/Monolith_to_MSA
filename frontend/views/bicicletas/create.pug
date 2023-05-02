@@ -1,65 +1,27 @@
+
 extends ../layout
 
 block content
-
-    a(href='/bicicletas') Volver
-
-    br
-
-    br
-
-    br
-
-    h1 Nueva bicicleta
-
-    br
-
-    br
-
+  .container.px-4.px-lg-5.my-5
     form(action='/bicicletas/create',method='post')
+      .form-group
+        label(for='exampleFormControlSelect1') Color
+        select(name='color', id='exampleFormControlSelect1', required).form-control
+          each val in ['--select--','Blanco' , 'Negro' , 'Rojo','Verde']
+            option=val
+      .form-group
+        label(for='exampleFormControlSelect1') Modelo
+        select(name='model', id='', required).form-control
+          each val in ['--select--','Ruta' , 'Cross' , 'Montian','Turismo']
+            option=val
+      .form-group
+        label(for='') Latitude 
+        input#exampleFormControlInput1.form-control(name="latitude",type='text')
+      .form-group
+        label(for='') Longitude 
+        input#exampleFormControlInput1.form-control(name="longitude",type='text')
+      .form-group
+        label(for='') Longitude 
+        input#exampleFormControlInput1.form-control(name="Create",type='submit')
 
-        label(for='id') ID:
-
-        input#id(type='text' name='id' ,required)
-
-        br
-
-        label(for='color') Color:
-
-        select(name='color', id='', required)
-
-            each val in ['--select--','Blanco' , 'Negro' , 'Rojo','Verde']
-
-                option=val
-
-                //input#id(type='text' name='color', required)
-
-        br
-
-        label(for='modelo') Modelo:
-
-        select(name='modelo', id='', required)
-
-            each val in ['--select--','Ruta' , 'Cross' , 'Montian','Turismo']
-
-                option=val
-
-                //input#id(type='text' name='modelo',required)
-
-        br
-
-        label(for='lat') Latitud:
-
-        input#id(type='text' name='lat',required)
-
-        br
-
-        label(for='lng') Longitud:
-
-        input#id(type='text' name='lng', required)
-
-        br
-
-        br
-
-        input.btn(type='submit' name='OK' )
+  

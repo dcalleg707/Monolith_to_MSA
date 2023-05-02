@@ -1,5 +1,6 @@
 import { Router, Response, Request } from "express";
 import { BicycleRepository } from "../database/repositories/BicycleRepository";
+import { randomInt } from "crypto";
 export class BicycleController {
     public router: Router;
 
@@ -26,6 +27,8 @@ export class BicycleController {
     }
 
     public createBicycle = async (req: Request, res: Response, next: Function) => {
+        let data = req.body
+        data.id = randomInt(1, 10000)
         const newBicycle = BicycleRepository.create(req.body)
         BicycleRepository.save(newBicycle).then(results => {
             res.status(201).send(results);
@@ -47,12 +50,17 @@ export class BicycleController {
     }
 
     public deleteBicycle = async (req: Request, res: Response, next: Function) => {
-        BicycleRepository.delete({ id: Number(req.params.id) }).then(results => {
-            if (results.affected === 0) throw new Error("Bycicle not found");
-            res.send(results);
-        }).catch(error => {
-            next(error);
-        });
+        if(req.params.id) {
+            BicycleRepository.delete({ id: Number(req.params.id) }).then(results => {
+                if (results.affected === 0) throw new Error("Bycicle not found");
+                res.send(results);
+            }).catch(error => {
+                next(error);
+            });
+        }
+        else {
+            res.status(404).send("")
+        }
     }
 
     public routes() {

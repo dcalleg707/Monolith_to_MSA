@@ -10,7 +10,39 @@ html
     // Core theme CSS (includes Bootstrap)
     link(href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css' rel='stylesheet')
     link(href='css/styles.css' rel='stylesheet')
+    script(src='https://unpkg.com/axios/dist/axios.min.js')
     script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
     script(src='/javascripts/map.js')
   body
+
+    // Navigation
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container.px-4.px-lg-5
+        a.navbar-brand(href='/') Redbicicletas
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+          ul.navbar-nav.me-auto.mb-2.mb-lg-0.ms-lg-4
+            li.nav-item
+              a.nav-link.active(aria-current='page' href='/') Home
+            li.nav-item
+              a.nav-link(href='/bicicletas') Bicicletas
+            li.nav-item
+              a.nav-link(href='/bicicletas/create') Nueva bicicleta
+            li.nav-item.login-button
+              a.nav-link(href='/auth/google') Google Login
+    // Header
+    header.bg-dark.py-5
+      .container.px-4.px-lg-5.my-5
+        .text-center.text-white
+          h1.display-4.fw-bolder redbicicletas
+          p.lead.fw-normal.text-white-50.mb-0 Anda a tu estilo
     block content
+  
+    footer.py-5.bg-dark
+      .container
+      p.m-0.text-center.text-white Copyright &copy; Your Website 2023
+      // Bootstrap core JS
+      script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js')
+      // Core theme JS
+      script(src='js/scripts.js')

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BicycleController = void 0;
 const express_1 = require("express");
 const BicycleRepository_1 = require("../database/repositories/BicycleRepository");
+const crypto_1 = require("crypto");
 class BicycleController {
     constructor() {
         this.getAllBicycles = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -31,6 +32,8 @@ class BicycleController {
             });
         });
         this.createBicycle = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let data = req.body;
+            data.id = (0, crypto_1.randomInt)(1, 10000);
             const newBicycle = BicycleRepository_1.BicycleRepository.create(req.body);
             BicycleRepository_1.BicycleRepository.save(newBicycle).then(results => {
                 res.status(201).send(results);
@@ -51,13 +54,18 @@ class BicycleController {
             });
         });
         this.deleteBicycle = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            BicycleRepository_1.BicycleRepository.delete({ id: Number(req.params.id) }).then(results => {
-                if (results.affected === 0)
-                    throw new Error("Bycicle not found");
-                res.send(results);
-            }).catch(error => {
-                next(error);
-            });
+            if (req.params.id) {
+                BicycleRepository_1.BicycleRepository.delete({ id: Number(req.params.id) }).then(results => {
+                    if (results.affected === 0)
+                        throw new Error("Bycicle not found");
+                    res.send(results);
+                }).catch(error => {
+                    next(error);
+                });
+            }
+            else {
+                res.status(404).send("");
+            }
         });
         this.router = (0, express_1.Router)();
         this.routes();
