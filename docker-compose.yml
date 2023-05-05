@@ -12,6 +12,7 @@ services:
       - locations
       - google-service
       - auth
+      - rent
 
   front:
     build: frontend
@@ -30,6 +31,15 @@ services:
       PORT: 3001
     ports: 
       - "3001:3001"
+  
+  rent:
+    build: rentalMicroservice
+    environment:
+      DB_USER: root
+      DB_PASSWORD: root123
+      PORT: 3006
+    ports: 
+      - "3006:3006"
     
   locations:
     build: locationMicroservice

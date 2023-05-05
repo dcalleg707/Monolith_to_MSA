@@ -7,8 +7,8 @@ RUN npm install
 COPY . /app
 RUN npm run tsc
 
-ENV PORT 3006
+ENV PORT 3001
 
-EXPOSE 3006
+EXPOSE 3001
 
 CMD [ "node", "build/server.js" ]

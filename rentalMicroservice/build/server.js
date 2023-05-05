@@ -31,12 +31,12 @@ class Server {
         });
     }
     configuration() {
-        this.app.set('port', process.env.PORT || 3001);
+        this.app.set('port', process.env.PORT || 3006);
         this.app.use(body_parser_1.default.json());
     }
     routes() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.app.use('/api/locations', this.bicycleController.router);
+            this.app.use('/api/rent', this.bicycleController.router);
         });
     }
     start() {

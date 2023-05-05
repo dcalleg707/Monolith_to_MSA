@@ -16,10 +16,15 @@ block content
                   // Product name
                   h5.fw-bolder=bici.model 
                     span=bici.color
+                  if bici.owner
+                    h5.fw-bolder="Owned by: "  
+                      span=bici.owner
               // Product actions
               .card-footer.p-4.pt-0.border-top-0.bg-transparent
                 .text-center
                   a.btn.btn-outline-dark.mt-auto(href='bicicletas/'+bici.id+'/update') editar
+                  if ! bici.owner
+                    a.btn.btn-outline-dark.mt-auto.js-rentButton(href='#' bicycle=bici.id) rentar
                   form.inline(method='post' action='/bicicletas/'+bici.id+'/delete')
 
                       input(type='hidden' name='id' value=bici.id)

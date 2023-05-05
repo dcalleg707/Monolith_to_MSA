@@ -22,12 +22,12 @@ class Server {
     }
 
     public configuration() {
-        this.app.set('port', process.env.PORT || 3001);
+        this.app.set('port', process.env.PORT || 3006);
         this.app.use(bodyParser.json());
     }
 
     public async routes() {
-        this.app.use('/api/locations', this.bicycleController.router);
+        this.app.use('/api/rent', this.bicycleController.router);
     }
 
     public start() {

@@ -14,9 +14,15 @@ const express_1 = require("express");
 const BicycleRepository_1 = require("../database/repositories/BicycleRepository");
 class BicycleController {
     constructor() {
-        this.getAllBicycles = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            BicycleRepository_1.BicycleRepository.find().then(bicycles => {
-                res.send(bicycles);
+        this.rentBicycle = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            BicycleRepository_1.BicycleRepository.findOneBy({ id: Number(req.body.id) }).then(bicycle => {
+                if (!bicycle)
+                    throw new Error("Bicycle not found");
+                delete req.body.id;
+                BicycleRepository_1.BicycleRepository.merge(bicycle, req.body);
+                return BicycleRepository_1.BicycleRepository.save(bicycle);
+            }).then(results => {
+                res.send(results);
             }).catch(error => {
                 next(error);
             });
@@ -25,7 +31,7 @@ class BicycleController {
         this.routes();
     }
     routes() {
-        this.router.get("/", this.getAllBicycles);
+        this.router.post("/", this.rentBicycle);
     }
 }
 exports.BicycleController = BicycleController;

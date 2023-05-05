@@ -7,4 +7,5 @@ export class Bicycle {
     @Column("varchar") color: string;
     @Column("varchar") model: string;
     @Column("varchar") location: string[];
+    @Column("varchar") owner: string;
 }
