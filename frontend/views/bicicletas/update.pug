@@ -3,24 +3,30 @@ extends ../layout
 
 block content
   .container.px-4.px-lg-5.my-5
-    form(action='/bicicletas/create',method='post')
+    form(action=`/bicicletas/${bici.id}/update`,method='post')
       .form-group
         label(for='exampleFormControlSelect1') Color
         select(name='color', id='exampleFormControlSelect1', required).form-control
           each val in ['--select--','Blanco' , 'Negro' , 'Rojo','Verde']
-            option=val
+            if bici.color == val
+              option(selected="true")=val
+            else 
+               option=val
       .form-group
         label(for='exampleFormControlSelect1') Modelo
         select(name='model', id='', required).form-control
           each val in ['--select--','Ruta' , 'Cross' , 'Montian','Turismo']
-            option=val
+            if bici.model == val
+              option(selected="true")=val
+            else 
+               option=val
       .form-group
         label(for='') Latitude 
-        input#exampleFormControlInput1.form-control(name="latitude",type='text')
+        input#exampleFormControlInput1.form-control(name="latitude",type='text',  value=bici.location[0])
       .form-group
         label(for='') Longitude 
-        input#exampleFormControlInput1.form-control(name="longitude",type='text')
+        input#exampleFormControlInput1.form-control(name="longitude",type='text',  value=bici.location[1])
       .form-group
-        input#exampleFormControlInput1.form-control(name="Create",type='submit')
+        input#exampleFormControlInput1.form-control(name="update",type='submit')
 
   

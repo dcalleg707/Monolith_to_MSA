@@ -17,7 +17,7 @@ serviceEndpoints:
   httpbin:
     url: 'localhost:3001/bicycles'
   bicycleService:
-    url: 'http://localhost:3001'
+    url: 'http://bicycles:3001'
   locationService:
     url: 'http://localhost:3002'
   authService:

@@ -1,0 +1,59 @@
+version: "3.1"
+services:
+  proxy:
+    image: nginx:1.19.5-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - front
+      - bicycles
+      - locations
+      - google-service
+      - auth
+
+  front:
+    build: frontend
+    ports: 
+      - "8081:8081"
+    environment:
+      BICYCLES_URL: http://bicycles:3001
+      LOCATIONS_URL: http://locations:3002
+      AUTH_URL: http://localhost:8080
+
+  bicycles:
+    build: BicycleMicroservice
+    environment:
+      DB_USER: root
+      DB_PASSWORD: root123
+      PORT: 3001
+    ports: 
+      - "3001:3001"
+    
+  locations:
+    build: locationMicroservice
+    environment:
+      DB_USER: root
+      DB_PASSWORD: root123
+      PORT: 3002
+    ports: 
+      - "3002:3002"
+  
+  auth:
+    build: users-service
+    environment:
+      PORT: 3005
+      GOOGLE_SERVICE_URL: http://localhost:8080
+    ports: 
+      - "3005:3005"
+  
+  google-service:
+    build: googleAuthService
+    environment:
+      PORT: 3000
+      GOOGLE_CLIENT_ID: 67105133250-dvoaea2go6nh81b6vdvaqtu73067schl.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: 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
+    ports: 
+      - "3000:3000"
+    

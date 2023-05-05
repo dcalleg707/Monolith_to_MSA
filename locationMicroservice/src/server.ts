@@ -22,7 +22,7 @@ class Server {
     }
 
     public configuration() {
-        this.app.set('port', process.env.PORT || 3001);
+        this.app.set('port', process.env.PORT || 3002);
         this.app.use(bodyParser.json());
     }
 

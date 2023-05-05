@@ -20,7 +20,7 @@ router.get('/auth/check', (req, res, next) => {
 });
 
 router.get('/auth/google', function (req, res, next) {
-  res.redirect("http://localhost:3000/auth/google")
+  res.redirect(process.env.GOOGLE_SERVICE_URL + "/auth/google")
 });
 
 

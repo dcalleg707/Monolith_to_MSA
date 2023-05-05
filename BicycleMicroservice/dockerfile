@@ -1,15 +1,14 @@
 FROM node:lts
 
-RUN mkdir /app
-
 WORKDIR /app
-
 COPY package*.json /app/
 
 RUN npm install
-
 COPY . /app
+RUN npm run tsc
 
-EXPOSE 8081
+ENV PORT 3001
 
-CMD [ "npm", "start" ]
+EXPOSE 3001
+
+CMD [ "node", "build/server.js" ]

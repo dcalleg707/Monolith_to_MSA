@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import mongodb from "mongodb";
-import { Bicycle } from './database/entities/Bicycle';
+import { Bicycle } from './database/entities/Bicycle.entity';
 
 require("dotenv").config();
 
@@ -14,7 +14,8 @@ const myDataSource = new DataSource({
     useUnifiedTopology: true,
     logging: true,
     ssl: true,
-    entities: [Bicycle],
+    entities: [__dirname + '/../**/*.entity.js'] 
+    ,
     subscribers: [],
     migrations: [],
 })

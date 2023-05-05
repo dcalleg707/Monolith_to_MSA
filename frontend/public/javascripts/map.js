@@ -1,6 +1,6 @@
 window.onload = function (event) {
     if(document.querySelector("#main_map")) {
-        const map = L.map('main_map').setView([51.505, -0.09], 13);
+        const map = L.map('main_map').setView([51.505, -0.09], 3);
 
         const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -13,13 +13,13 @@ window.onload = function (event) {
     }
     
 
-    let user = axios.get("http://localhost:3004/auth/check"
+    let user = axios.get("http://localhost:8080/auth/check"
     , {
       withCredentials: true
     })
     .then((data) =>{ 
         document.querySelector(".login-button").innerHTML = "<p class='nav-link'> Hola "+ data.data.fullName  +"</p>"
     })
-    .catch(err => console.log(err.message))
+    .catch(err => console.log(err))
 }
 

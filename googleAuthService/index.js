@@ -6,8 +6,6 @@ const cors = require('cors');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const indexRouter = require('./routes/index');
-const GOOGLE_CLIENT_ID = '67105133250-dvoaea2go6nh81b6vdvaqtu73067schl.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
 const app = express();
 const session = require('express-session');
 
@@ -34,8 +32,8 @@ passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 passport.use(new GoogleStrategy({
-  clientID: GOOGLE_CLIENT_ID,
-  clientSecret: GOOGLE_CLIENT_SECRET,
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/google/callback"
 },
   function (accessToken, refreshToken, profile, done) {
